@@ -37,32 +37,29 @@
 </head>
 
 <body>
-<!-- Static navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{action('HomeController@showHomepage')}}">TREMENDOUS UPSIDE</a>
+    <div class="row-fluid">
+        <div class="span 12 well">
+            <h1>My Website</h1>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-            <li><a href="{{action('HomeController@showAbout')}}">About</a></li>
-            <li><a href="{{action('HomeController@showPortfolio')}}">Works</a></li>
-            <li><a href="{{action('PostsController@index')}}">Blog</a></li>
-            <li><a href="{{action('HomeController@showResume')}}">Resume</a></li>
-
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </div>
-    
+    <div class="row-fluid">
+    <div class="span3">
+        <ul class="nav nav-pills">
+            @if(Auth::user())
+            <li class="nav-header">{{ ucwords(Auth::user()->username) }}</li>
+            <li>{{ HTML::link('post', 'Add Post')}}</li>
+            <li>{{ HTML::link('users', 'View Users') }}</li>
+            <li>{{ HTML::link('logout', 'Logout') }}</li>
+            @else
+            <li>{{ HTML::link('login', 'Login') }}</li>
+            @endif
+        </ul>
+    </div>
+    <div class="span9">
     @yield('content')
+    </div>
+    </div>
+
     
 
 
